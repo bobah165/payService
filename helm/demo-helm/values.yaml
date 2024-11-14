@@ -1,0 +1,30 @@
+replicas:
+  _default: 1
+  dev: 1
+
+selector : dev
+
+name:
+  app: pay-helm
+
+service:
+  nameApp: pay-helm-service
+  portName: helm-pay
+  type: NodePort
+  port: 80
+  targetPort: 8000
+
+image:
+  repository: bobah165/pay
+  tag: v6
+
+ingress:
+  enabled: false
+  name: "pay-service-helm-ingress"
+  className: nginx
+  host: "arch.homework"
+  pathType: Prefix
+  path:
+    pay: /api/pay
+    account: /api/account
+
