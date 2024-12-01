@@ -30,9 +30,13 @@ public class OrderService {
 
   @Transactional
   public void createOrder(Order order) {
+    log.info("recalculate");
     personAccountService.recalculate(order.getPrice());
     order.setStatus("CREATED");
+    log.info("Save order to repo");
     repository.save(order);
+    log.info("send order to kafka");
     producerService.sendOrder(order);
+    log.info("stop");
   }
 }
