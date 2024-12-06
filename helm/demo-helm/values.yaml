@@ -19,7 +19,7 @@ kafka:
   type: NodePort
   port: 9092
   targetPort: 9092
-  bootstrap: 127.0.0.1:9094
+  bootstrap: kafka:9092
 
 image:
   repository: bobah165/pay
